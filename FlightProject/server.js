@@ -1,9 +1,19 @@
 // server.js
 
 var http = require('http');
-var server = http.createServer(function(req, res) {
-	res.writeHead(200, 'OK', { 'Content-Type': 'text/html' });
-	res.write('<html><body><h1>Hello world</h1></body></html>');
+var url = require('url');
+
+function requestHandler(req, res){
+	
+	res.writeHead(200, 'OK', { 'Content-Type': 'text/html'});
+
+	var urlData = url.parse(req.url, true);
+
+	res.write('action: ' + urlData.query.action + '<br>');
+	res.write('flight: ' + urlData.query.flight + '<br>');
+
 	res.end();
-});
+}
+var server = http.createServer(requestHandler);
+
 server.listen(8080);

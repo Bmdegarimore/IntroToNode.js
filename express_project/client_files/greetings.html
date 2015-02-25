@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <meta charset = "utf-8">
+    <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
+    <meta name = "viewport" content = "width=device-width, initial-scale=1">
+    <title>Nice</title>
+    
+  </head>
+
+  <body>
+  	<input id="txt-name" type="text" value="Brandon"/>
+
+  	<button id="sub">Submit</button>
+
+  	<div id="response"></div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>
+//Get the value from the text field
+var name = $("#txt-name").val();
+
+//Post name to the server "geetings" route
+$.post("greetings", {name : name}, function (res) {
+
+
+
+	console.log("The server responded: " + res.response);
+
+	//Display the server response in the div
+	$("#response").html(res.response);
+});
+</script>
+</body>
+</html>
